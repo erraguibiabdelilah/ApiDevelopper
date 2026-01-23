@@ -1,12 +1,11 @@
 package com.example.backend.security.config;
 
-import com.example.backend.security.filter.JwtAuthenticationFilter;
 import com.example.backend.security.filter.JwtAuthorisationFilter;
 import com.example.backend.security.services.facad.UserService;
 import com.example.backend.security.services.utils.JwtUtils;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,76 +19,70 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig {
 
     /**
-     * Filtre JWT pour la validation des tokens sur chaque requête
+     * Filtre JWT pour la validation des tokens
      */
     @Bean
-    public JwtAuthorisationFilter jwtAuthorisationFilter(UserService userDetailsService,
+    public JwtAuthorisationFilter jwtAuthorisationFilter(UserService userService,
                                                          JwtUtils jwtUtils) {
-        return new JwtAuthorisationFilter(userDetailsService, jwtUtils);
+        return new JwtAuthorisationFilter(userService, jwtUtils);
     }
 
     /**
      * Configuration de la chaîne de filtres de sécurité
+     * NOTE: On ne demande plus AuthenticationManager ici
      */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http,
-                                           AuthenticationManager authenticationManager,
                                            JwtAuthorisationFilter jwtAuthorisationFilter) throws Exception {
-        // Filtre d’authentification JWT pour endpoints protégés seulement
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager);
-        // IMPORTANT : NE PAS mettre /api_backend/auth/login ou /sign-in ici
-        // On laisse ce filtre pour les endpoints futurs qui nécessitent un token
-        jwtAuthenticationFilter.setFilterProcessesUrl("/api_backend/protected");
-
 
         http
-                // Configuration du contexte de sécurité
-                .securityContext(securityContext ->
-                        securityContext.requireExplicitSave(false)
-                )
-
                 // Désactivation de CSRF (API REST stateless)
                 .csrf(csrf -> csrf.disable())
 
-                // Configuration de la gestion de session (stateless pour API REST)
+                // Configuration de la gestion de session (stateless)
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
 
                 // Configuration des autorisations HTTP
                 .authorizeHttpRequests(auth -> auth
-                        // Endpoints publics
-                        .requestMatchers( "/api_backend/auth/sign-in/").permitAll()
-                        .requestMatchers("/api_backend/auth/login/").permitAll()     // création user
-
-                        // authentification user
-                        .requestMatchers("/api/admin/**").permitAll()
-                        .requestMatchers("/actuator/health", "/actuator/info").permitAll()
-                        .requestMatchers("/api/open/**").permitAll()
-                        .requestMatchers("/api/admin/login").permitAll()
-
-
-                        // Documentation Swagger
+                        // Endpoints publics - PAS besoin de token
                         .requestMatchers(
+                                // Authentification
+                                "/api_backend/auth/sign-in/",
+                                "/api_backend/auth/login/",
+
+                                // Documentation
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
-                                "/webjars/**"
+                                "/webjars/**",
+
+                                // Health check
+                                "/actuator/health",
+                                "/actuator/info"
                         ).permitAll()
 
-                        // Endpoints admin (décommentez selon vos besoins)
-                        // .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
+                        // Endpoints admin - besoin du rôle ADMIN
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
 
                         // Tous les autres endpoints nécessitent une authentification
                         .anyRequest().authenticated()
                 )
 
-                // IMPORTANT: Ajout des deux filtres JWT
-                // 1. Filtre d'authentification (pour le login)
-                .addFilter(jwtAuthenticationFilter)
-                // 2. Filtre d'autorisation (pour valider le token sur chaque requête)
-                .addFilterBefore(jwtAuthorisationFilter, UsernamePasswordAuthenticationFilter.class);
+                // Ajout du filtre JWT pour valider les tokens
+                .addFilterBefore(jwtAuthorisationFilter, UsernamePasswordAuthenticationFilter.class)
+
+                // Gestion des erreurs
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Accès non autorisé");
+                        })
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Accès refusé");
+                        })
+                );
 
         return http.build();
     }

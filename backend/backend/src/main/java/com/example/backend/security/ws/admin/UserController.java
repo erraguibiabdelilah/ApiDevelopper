@@ -9,14 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api_backend/api/admin/")
-public class UserControllerAdmin {
+@RequestMapping("api_backend/protected")
+public class UserController {
     private  UserService userService;
 
-    @GetMapping("/sign-in/")
-    public String signIn(@RequestBody User user) {
-        return userService.signIn(user);
-    }
     @GetMapping("/username/{username}")
     public UserDetails loadUserByUsername(@PathVariable String username) throws UsernameNotFoundException {
         return userService.loadUserByUsername(username);
@@ -25,12 +21,13 @@ public class UserControllerAdmin {
     public User save(@RequestBody  User user) {
         return userService.save(user);
     }
+
     @GetMapping("/")
     public List<User> findAll() {
         return userService.findAll();
     }
 
-    public UserControllerAdmin(UserService userService){
+    public UserController(UserService userService){
         this.userService=userService;
     }
 }

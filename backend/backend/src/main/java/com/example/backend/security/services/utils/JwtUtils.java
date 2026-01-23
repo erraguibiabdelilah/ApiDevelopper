@@ -15,18 +15,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 @Component
 public class JwtUtils {
 
     private static final long serialVersionUID = 2342345235223L;
 
-    private static final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+     private static String  originalKey = "mySecretKey&?!?d!&lm.2&0#2&6#?!!?EXTRA_CHARS_TO_MAKE_IT_LONG_ENOUGH_FOR_HS512_SIGNATURE_ALGORITHM!!!";
 
+    private static final String secretKey = Base64.getEncoder().encodeToString(originalKey.getBytes());
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();

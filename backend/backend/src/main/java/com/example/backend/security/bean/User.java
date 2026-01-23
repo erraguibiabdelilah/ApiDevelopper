@@ -18,7 +18,7 @@ public class User implements UserDetails {
     private boolean accountNonLocked = true;
     private boolean accountNonExpired = true;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
