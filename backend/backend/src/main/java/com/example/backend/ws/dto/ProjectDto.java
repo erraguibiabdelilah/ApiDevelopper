@@ -1,5 +1,6 @@
 package com.example.backend.ws.dto;
 
+import com.example.backend.security.bean.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,5 @@ import java.util.List;
 public class ProjectDto {
     private String projectName;
     private LocalDateTime createdAt;
-    private Long userId;
-    private List<EntityDefinitionDto> entitydtos;
+    private User user;
 }

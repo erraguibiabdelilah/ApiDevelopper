@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface ProjectService {
+    Project findProjectById(Long id);
+
     List<Project> findByUserId(Long userId);
 
     boolean existsByProjectNameAndUserId(String projectName, Long userId);
@@ -13,6 +15,8 @@ public interface ProjectService {
     Project findByIdAndUserId(Long id, Long userId);
 
     int save(Project project);
+
+    int update(Project project);
 
     List<Project> findAll();
 }
