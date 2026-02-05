@@ -49,6 +49,11 @@ public class EntityDefinitionServiceImpl implements EntityDefinitionServices {
     public List<EntityDefinition> findAll() {
         return dao.findAll();
     }
+    @Override
+    public int deleteById(Long id) {
+        dao.deleteById(id);
+        return 1;
+    }
 
     public EntityDefinitionServiceImpl(EntityDefinitionRepository dao) {
         this.dao = dao;

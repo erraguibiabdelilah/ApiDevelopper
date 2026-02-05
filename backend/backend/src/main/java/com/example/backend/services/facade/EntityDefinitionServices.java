@@ -18,4 +18,6 @@ public interface EntityDefinitionServices {
     int update(EntityDefinition entityDefinition);
 
     List<EntityDefinition> findAll();
+
+    int deleteById(Long id);
 }
