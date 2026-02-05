@@ -1,10 +1,8 @@
 package com.example.backend.services.facade;
 
 import com.example.backend.entity.Project;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
 public interface ProjectService {
     Project findProjectById(Long id);
 
@@ -19,4 +17,6 @@ public interface ProjectService {
     int update(Project project);
 
     List<Project> findAll();
+
+    int deleteById(Long id);
 }

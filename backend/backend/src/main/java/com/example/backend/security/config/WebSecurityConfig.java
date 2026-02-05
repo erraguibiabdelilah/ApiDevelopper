@@ -35,9 +35,12 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http,
                                            JwtAuthorisationFilter jwtAuthorisationFilter) throws Exception {
 
+
         http
+
                 // Désactivation de CSRF (API REST stateless)
                 .csrf(csrf -> csrf.disable())
+                .cors(cros->{})
 
                 // Configuration de la gestion de session (stateless)
                 .sessionManagement(session ->

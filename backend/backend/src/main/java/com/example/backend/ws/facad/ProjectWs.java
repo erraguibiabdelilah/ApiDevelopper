@@ -2,6 +2,7 @@ package com.example.backend.ws.facad;
 
 import com.example.backend.entity.Project;
 import com.example.backend.services.facade.ProjectService;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,10 +24,7 @@ public class ProjectWs {
     public List<Project> findByUserId(@PathVariable Long userId) {
         return projectService.findByUserId(userId);
     }
-    @GetMapping("/user/{userId}/project/{projectName}")
-    public boolean existsByProjectNameAndUserId(@PathVariable String projectName,@PathVariable Long userId) {
-        return projectService.existsByProjectNameAndUserId(projectName, userId);
-    }
+
     @GetMapping("/user/{userId}/project/{id}")
     public Project findByIdAndUserId(@PathVariable Long id,@PathVariable Long userId) {
         return projectService.findByIdAndUserId(id, userId);
@@ -38,6 +36,11 @@ public class ProjectWs {
     @GetMapping("/")
     public List<Project> findAll() {
         return projectService.findAll();
+    }
+    @Transactional
+    @DeleteMapping("/{id}")
+    public int deleteById(@PathVariable Long id) {
+        return projectService.deleteById(id);
     }
 
     public ProjectWs(ProjectService projectService) {

@@ -1,5 +1,6 @@
 package com.example.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -38,7 +39,8 @@ public class AttributeDefinition {
     @Column(name = "value")
     private List<String> enumValues;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+
     @JoinColumn(name = "entity_id", nullable = false)
     private EntityDefinition entityDefinition;
 }

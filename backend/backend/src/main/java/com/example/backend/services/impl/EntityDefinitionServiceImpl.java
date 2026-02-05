@@ -3,8 +3,10 @@ package com.example.backend.services.impl;
 import com.example.backend.dao.EntityDefinitionRepository;
 import com.example.backend.entity.EntityDefinition;
 import com.example.backend.services.facade.EntityDefinitionServices;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 
 public class EntityDefinitionServiceImpl implements EntityDefinitionServices {
 
@@ -27,14 +29,26 @@ public class EntityDefinitionServiceImpl implements EntityDefinitionServices {
     }
     @Override
     public int save(EntityDefinition entityDefinition) {
+        if (entityDefinition.getProject()==null) return -1;
+        if (entityDefinition.getEntityName()==null) return -2;
+        if(existsByEntityNameAndProjectId(entityDefinition.getEntityName(),entityDefinition.getProject().getId())) return -3;
         dao.save(entityDefinition);
+        return 1;
+    }
+
+    @Override
+    public int update(EntityDefinition entityDefinition){
+        EntityDefinition oldEntity=findEntityDefinitionById(entityDefinition.getId());
+        if(oldEntity==null) return -1;
+
+        oldEntity.setEntityName(entityDefinition.getEntityName());
+        dao.save(oldEntity);
         return 1;
     }
     @Override
     public List<EntityDefinition> findAll() {
         return dao.findAll();
     }
-
 
     public EntityDefinitionServiceImpl(EntityDefinitionRepository dao) {
         this.dao = dao;
