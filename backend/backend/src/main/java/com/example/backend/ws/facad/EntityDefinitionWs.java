@@ -17,7 +17,7 @@ public class EntityDefinitionWs {
     public EntityDefinition findEntityDefinitionById(@PathVariable Long id) {
         return services.findEntityDefinitionById(id);
     }
-    
+
     @GetMapping("/project/{projectId}/entityDefinitions/{entityName}")
     public EntityDefinition findByEntityNameAndProjectId(@PathVariable String entityName, @PathVariable  Long projectId) {
         return services.findByEntityNameAndProjectId(entityName, projectId);
