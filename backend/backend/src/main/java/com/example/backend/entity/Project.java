@@ -1,10 +1,12 @@
 package com.example.backend.entity;
 
 import com.example.backend.security.bean.User;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,8 +20,8 @@ public class Project {
     private LocalDateTime createdAt;
     @Column(nullable = false)
 
-    @OneToMany
-    private List<EntityDefinition> entity;
+    @OneToMany(mappedBy = "project",cascade = CascadeType.ALL)
+    private List<EntityDefinition> entitys=new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")

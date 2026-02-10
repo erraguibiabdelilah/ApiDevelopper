@@ -1,4 +1,4 @@
-package com.example.backend.security.ws.admin;
+package com.example.backend.security.ws.facad.pub;
 
 import com.example.backend.security.bean.User;
 import com.example.backend.security.services.facad.UserService;
@@ -6,28 +6,29 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("api_backend/protected")
-public class UserController {
+@RequestMapping("api_backend/auth/")
+public class AuthController {
     private  UserService userService;
 
-    @GetMapping("/username/{username}")
+    @PostMapping("sign-in/")
+    public String signIn(@RequestBody User user) {
+        return userService.signIn(user);
+    }
+
+
+    @GetMapping("username/{username}")
     public UserDetails loadUserByUsername(@PathVariable String username) throws UsernameNotFoundException {
         return userService.loadUserByUsername(username);
     }
-    @PostMapping("/")
+
+
+    @PostMapping("login/")
     public User save(@RequestBody  User user) {
         return userService.save(user);
     }
 
-    @GetMapping("/")
-    public List<User> findAll() {
-        return userService.findAll();
-    }
-
-    public UserController(UserService userService){
+    public AuthController(UserService userService){
         this.userService=userService;
     }
 }

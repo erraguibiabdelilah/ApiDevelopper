@@ -13,5 +13,6 @@ import java.util.List;
 public class EntityDefinitionDto {
     private Long id;
     private String entityName;
+    private Long project_id;
 
 }

@@ -1,6 +1,7 @@
 package com.example.backend.services.facade;
 
 import com.example.backend.entity.Project;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 public interface ProjectService {
@@ -19,4 +20,11 @@ public interface ProjectService {
     List<Project> findAll();
 
     int deleteById(Long id);
+
+
+
+/*
+    List<Project> findProjectsWithEntitiesByUserId(Long id);
+
+ */
 }

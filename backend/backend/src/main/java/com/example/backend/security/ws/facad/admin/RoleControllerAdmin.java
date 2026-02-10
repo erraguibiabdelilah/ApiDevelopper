@@ -1,4 +1,4 @@
-package com.example.backend.security.ws.admin;
+package com.example.backend.security.ws.facad.admin;
 
 import com.example.backend.security.bean.Role;
 import com.example.backend.security.services.facad.RoleService;

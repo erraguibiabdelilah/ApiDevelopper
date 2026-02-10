@@ -76,8 +76,9 @@ public class JwtAuthorisationFilter extends OncePerRequestFilter {
                     // 9. Injecter l'authentification dans le contexte de sécurité
                     SecurityContextHolder.getContext().setAuthentication(authentication);
 
-                    logger.info("Utilisateur authentifié avec succès: " + username);
+                    logger.info("Utilisateur authentifié avec succès: " + username );
                     logger.debug("Authorités: " + userDetails.getAuthorities());
+
 
                 } else {
                     logger.warn("Token JWT invalide pour l'utilisateur: " + username);

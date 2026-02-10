@@ -63,6 +63,12 @@ public class ProjectServiceImpl implements ProjectService {
         dao.deleteById(id);
         return 1;
     }
+    /*
+    @Override
+    public List<Project> findProjectsWithEntitiesByUserId(Long id) {
+            return dao.findProjectsWithEntitiesByUserId(id);
+
+    }*/
 
     ProjectServiceImpl(ProjectRepository dao){
         this.dao=dao;
