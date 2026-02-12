@@ -24,7 +24,7 @@ public class BackendApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Role roleUser=new Role("USER");
         Role roleAdmin=new Role("ADMIN");
-        //roleService.save(Set.of(roleAdmin,roleUser));
+        roleService.save(Set.of(roleAdmin,roleUser));
         User user=new User("abdelilah","abdelilah@erraguibi","1234");
         user.setAuthorities(Set.of(roleUser));
 
