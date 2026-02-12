@@ -18,8 +18,6 @@ public class ProjectConvertir {
         this.entityConvertir=entityConvertir;
     }
 
-
-
     public Project toBean(ProjectDto dto){
         Project bean =new Project();
         bean.setId(dto.getId());
@@ -28,7 +26,9 @@ public class ProjectConvertir {
         if (dto.getUser()!=null){
             bean.setUser(userConvertir.toBean(dto.getUser()));
         }
-        bean.setEntitys(entityConvertir.toBeans(dto.getEntitys()));
+        if (dto.getEntitys() != null) {
+            bean.setEntitys(entityConvertir.toBeans(dto.getEntitys()));
+        }
         return bean;
     }
 
@@ -40,7 +40,9 @@ public class ProjectConvertir {
         if (bean.getUser() != null) {
             dto.setUser(userConvertir.toDto(bean.getUser()));
         }
-        dto.setEntitys(entityConvertir.toDtos(bean.getEntitys()));
+        if(bean.getEntitys()!=null) {
+            dto.setEntitys(entityConvertir.toDtos(bean.getEntitys()));
+        }
         return dto;
     }
 
