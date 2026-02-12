@@ -52,8 +52,8 @@ public class WebSecurityConfig {
                         // Endpoints publics - PAS besoin de token
                         .requestMatchers(
                                 // Authentification
-                                "/api_backend/auth/sign-in/",
-                                "/api_backend/auth/login/",
+                                "/api/api_backend/auth/sign-in/",
+                                "/api/api_backend/auth/login/",
 
                                 // Documentation
                                 "/swagger-ui.html",

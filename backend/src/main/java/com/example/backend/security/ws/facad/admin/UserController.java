@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api_backend/protected")
+@RequestMapping("api/api_backend/protected")
 public class UserController {
     private  UserService userService;
 

@@ -1,0 +1,39 @@
+services:
+  mysql_db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: apiDev
+      MYSQL_USER: abde
+      MYSQL_PASSWORD: 123
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - api_net
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8080:8080"
+    depends_on:
+     mysql_db:
+       condition: service_healthy
+    networks:
+      - api_net
+
+
+networks:
+  api_net:
+    driver: bridge
+
+volumes:
+  mysql_data:

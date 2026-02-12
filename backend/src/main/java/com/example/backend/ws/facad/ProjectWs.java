@@ -49,10 +49,15 @@ public class ProjectWs {
         Project project=convertir.toBean(projectDto);
         return projectService.save(project);
     }
+
+
     @GetMapping("/")
     public List<ProjectDto> findAll() {
        return convertir.toDtos(projectService.findAll());
     }
+
+
+
     @Transactional
     @DeleteMapping("/{id}")
     public int deleteById(@PathVariable Long id) {

@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController
-@RequestMapping("api_backend/api/admin/role")
+@RequestMapping("api/api_backend/api/admin/role")
 public class RoleControllerAdmin {
 
     private RoleService roleService;
