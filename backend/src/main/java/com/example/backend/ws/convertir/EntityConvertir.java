@@ -12,7 +12,6 @@ public class EntityConvertir {
 
     public EntityDefinition toBean(EntityDefinitionDto dto){
         EntityDefinition bean=new EntityDefinition();
-
         bean.setId(dto.getId());
         bean.setEntityName(dto.getEntityName());
         //remplir seuelment l'ide de project
@@ -21,7 +20,6 @@ public class EntityConvertir {
             project.setId(dto.getProject_id());
             bean.setProject(project);
         }
-
         return bean;
     }
 
@@ -33,9 +31,9 @@ public class EntityConvertir {
         if (bean.getProject() != null) {
             dto.setProject_id(bean.getProject().getId());
         }
-
         return dto;
     }
+
 
     public List<EntityDefinition> toBeans(List<EntityDefinitionDto> dtos){
         List<EntityDefinition> beans=new ArrayList<>();

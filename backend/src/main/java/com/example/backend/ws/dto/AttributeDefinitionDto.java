@@ -21,5 +21,5 @@ public class AttributeDefinitionDto {
     private Boolean uniqueField;
     private String defaultValue;
     private List<String> enumValues;
-    private EntityDefinition entityDefinition;
+    private Long  entity_id;
 }
