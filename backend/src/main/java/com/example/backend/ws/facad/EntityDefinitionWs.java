@@ -35,14 +35,12 @@ public class EntityDefinitionWs {
     }
     @PostMapping("/")
     public int save(@RequestBody EntityDefinitionDto entityDefinitionDto) {
-        EntityDefinition entityDefinition=convertir.toBean(entityDefinitionDto);
-        return services.save(entityDefinition);
+        return services.save(entityDefinitionDto);
     }
 
     @PutMapping("/")
     public int update(@RequestBody EntityDefinitionDto entityDefinitionDto) {
-        EntityDefinition entityDefinition=convertir.toBean(entityDefinitionDto);
-        return services.update(entityDefinition);
+        return services.update(entityDefinitionDto);
     }
 
     @GetMapping("/")

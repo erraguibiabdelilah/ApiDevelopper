@@ -15,7 +15,6 @@ public class EntityDefinition {
     private String entityName;
     @OneToMany
     private List<AttributeDefinition> attributes;
-
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;

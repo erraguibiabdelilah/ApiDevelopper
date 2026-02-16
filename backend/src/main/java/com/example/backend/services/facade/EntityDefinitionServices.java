@@ -2,6 +2,7 @@ package com.example.backend.services.facade;
 
 
 import com.example.backend.entity.EntityDefinition;
+import com.example.backend.ws.dto.EntityDefinitionDto;
 
 import java.util.List;
 public interface EntityDefinitionServices {
@@ -13,9 +14,13 @@ public interface EntityDefinitionServices {
 
     List<EntityDefinition> findByProjectId(Long projectId);
 
-    int save(EntityDefinition entityDefinition);
 
-    int update(EntityDefinition entityDefinition);
+
+    int save(EntityDefinitionDto entityDefinitionDto);
+
+
+
+    int update(EntityDefinitionDto entityDefinitionDto);
 
     List<EntityDefinition> findAll();
 
