@@ -2,6 +2,9 @@ package com.example.backend.services.impl;
 import com.example.backend.dao.AttributeDefinitionRepository;
 import com.example.backend.entity.AttributeDefinition;
 import com.example.backend.services.facade.AttributeDefinitionService;
+import com.example.backend.ws.convertir.AttributeConvertir;
+import com.example.backend.ws.dto.AttributeDefinitionDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +14,7 @@ public class AttributeDefinitionServiceImpl implements AttributeDefinitionServic
 
 
     private final AttributeDefinitionRepository dao;
+    private final AttributeConvertir convertir;
 
     @Override
     public AttributeDefinition findByIdAndEntityDefinition_Id(Long attribute_id, Long entiy_id) {
@@ -31,8 +35,12 @@ public class AttributeDefinitionServiceImpl implements AttributeDefinitionServic
     }
 
     @Override
-    public int save(AttributeDefinition attribute) {
-        dao.save(attribute);
+    public int save(AttributeDefinitionDto attributeDefinitionDto) {
+        if (attributeDefinitionDto.getEntity_id()==null) return -1;
+        if(attributeDefinitionDto.getName()==null
+                || attributeDefinitionDto.getType()==null)  return -2;
+        AttributeDefinition attributeDefinition=convertir.toBean(attributeDefinitionDto);
+        dao.save(attributeDefinition);
         return 1;
     }
 
@@ -41,7 +49,8 @@ public class AttributeDefinitionServiceImpl implements AttributeDefinitionServic
         return dao.findAll();
     }
 
-    public AttributeDefinitionServiceImpl(AttributeDefinitionRepository dao) {
+    public AttributeDefinitionServiceImpl(AttributeDefinitionRepository dao, AttributeConvertir convertir) {
         this.dao = dao;
+        this.convertir=convertir;
     }
 }

@@ -10,6 +10,12 @@ import java.util.List;
 @Component
 public class EntityConvertir {
 
+    private final AttributeConvertir convertir;
+
+    public EntityConvertir(AttributeConvertir convertir) {
+        this.convertir = convertir;
+    }
+
     public EntityDefinition toBean(EntityDefinitionDto dto){
         EntityDefinition bean=new EntityDefinition();
         bean.setId(dto.getId());
@@ -20,6 +26,7 @@ public class EntityConvertir {
             project.setId(dto.getProject_id());
             bean.setProject(project);
         }
+        bean.setAttributes(convertir.toBeans(dto.getAttributeDefinitionDtos()));
         return bean;
     }
 
@@ -31,6 +38,7 @@ public class EntityConvertir {
         if (bean.getProject() != null) {
             dto.setProject_id(bean.getProject().getId());
         }
+        dto.setAttributeDefinitionDtos(convertir.toDtos(bean.getAttributes()));
         return dto;
     }
 

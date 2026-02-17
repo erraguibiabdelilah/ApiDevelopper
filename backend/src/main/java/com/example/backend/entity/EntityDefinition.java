@@ -13,7 +13,7 @@ public class EntityDefinition {
     private Long id;
     @Column(unique = true)
     private String entityName;
-    @OneToMany
+    @OneToMany(mappedBy = "entityDefinition",cascade = CascadeType.ALL)
     private List<AttributeDefinition> attributes;
     @ManyToOne
     @JoinColumn(name = "project_id")

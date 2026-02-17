@@ -2,6 +2,7 @@ package com.example.backend.services.facade;
 
 
 import com.example.backend.entity.AttributeDefinition;
+import com.example.backend.ws.dto.AttributeDefinitionDto;
 
 import java.util.List;
 public interface AttributeDefinitionService {
@@ -16,7 +17,7 @@ public interface AttributeDefinitionService {
 
     AttributeDefinition findAttributeDefinitionsById(Long id);
 
-    int save(AttributeDefinition attribute);
+    int save(AttributeDefinitionDto attributeDefinitionDto);
 
     List<AttributeDefinition> findAll();
 }
