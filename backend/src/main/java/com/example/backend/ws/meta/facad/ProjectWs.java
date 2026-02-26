@@ -1,9 +1,9 @@
-package com.example.backend.ws.facad;
+package com.example.backend.ws.meta.facad;
 
 import com.example.backend.entity.Project;
 import com.example.backend.services.meta.facade.ProjectService;
-import com.example.backend.ws.convertir.ProjectConvertir;
-import com.example.backend.ws.dto.ProjectDto;
+import com.example.backend.ws.meta.convertir.ProjectConvertir;
+import com.example.backend.ws.meta.dto.ProjectDto;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,9 +1,9 @@
-package com.example.backend.ws.facad;
+package com.example.backend.ws.meta.facad;
 
 import com.example.backend.entity.AttributeDefinition;
 import com.example.backend.services.meta.facade.AttributeDefinitionService;
-import com.example.backend.ws.convertir.AttributeConvertir;
-import com.example.backend.ws.dto.AttributeDefinitionDto;
+import com.example.backend.ws.meta.convertir.AttributeConvertir;
+import com.example.backend.ws.meta.dto.AttributeDefinitionDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package com.example.backend.services.meta.facade;
 
 
 import com.example.backend.entity.AttributeDefinition;
-import com.example.backend.ws.dto.AttributeDefinitionDto;
+import com.example.backend.ws.meta.dto.AttributeDefinitionDto;
 
 import java.util.List;
 public interface AttributeDefinitionService {

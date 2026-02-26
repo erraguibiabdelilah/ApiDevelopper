@@ -1,4 +1,4 @@
-package com.example.backend.ws.dto;
+package com.example.backend.ws.meta.dto;
 
 import com.example.backend.security.ws.dto.UserDto;
 import lombok.AllArgsConstructor;

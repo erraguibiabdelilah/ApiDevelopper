@@ -1,9 +1,6 @@
-package com.example.backend.ws.dto;
+package com.example.backend.ws.meta.dto;
 
 import com.example.backend.entity.AttributeType;
-import com.example.backend.entity.EntityDefinition;
-import com.example.backend.ws.dto.EntityDefinitionDto;
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;

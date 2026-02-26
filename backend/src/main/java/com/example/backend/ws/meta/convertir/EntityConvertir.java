@@ -1,8 +1,8 @@
-package com.example.backend.ws.convertir;
+package com.example.backend.ws.meta.convertir;
 
 import com.example.backend.entity.EntityDefinition;
 import com.example.backend.entity.Project;
-import com.example.backend.ws.dto.EntityDefinitionDto;
+import com.example.backend.ws.meta.dto.EntityDefinitionDto;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

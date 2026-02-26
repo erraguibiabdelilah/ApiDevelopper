@@ -2,7 +2,7 @@ package com.example.backend.services.meta.facade;
 
 
 import com.example.backend.entity.EntityDefinition;
-import com.example.backend.ws.dto.EntityDefinitionDto;
+import com.example.backend.ws.meta.dto.EntityDefinitionDto;
 
 import java.util.List;
 public interface EntityDefinitionServices {

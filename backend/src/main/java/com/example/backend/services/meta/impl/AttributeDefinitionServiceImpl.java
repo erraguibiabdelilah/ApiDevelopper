@@ -2,8 +2,8 @@ package com.example.backend.services.meta.impl;
 import com.example.backend.dao.AttributeDefinitionRepository;
 import com.example.backend.entity.AttributeDefinition;
 import com.example.backend.services.meta.facade.AttributeDefinitionService;
-import com.example.backend.ws.convertir.AttributeConvertir;
-import com.example.backend.ws.dto.AttributeDefinitionDto;
+import com.example.backend.ws.meta.convertir.AttributeConvertir;
+import com.example.backend.ws.meta.dto.AttributeDefinitionDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,8 +1,8 @@
-package com.example.backend.ws.facad;
+package com.example.backend.ws.meta.facad;
 
 import com.example.backend.services.meta.facade.EntityDefinitionServices;
-import com.example.backend.ws.convertir.EntityConvertir;
-import com.example.backend.ws.dto.EntityDefinitionDto;
+import com.example.backend.ws.meta.convertir.EntityConvertir;
+import com.example.backend.ws.meta.dto.EntityDefinitionDto;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 

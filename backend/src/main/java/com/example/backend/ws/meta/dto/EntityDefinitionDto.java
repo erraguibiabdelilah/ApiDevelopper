@@ -1,4 +1,4 @@
-package com.example.backend.ws.dto;
+package com.example.backend.ws.meta.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

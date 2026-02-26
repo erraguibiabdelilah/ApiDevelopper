@@ -2,7 +2,6 @@ package com.example.backend.dao;
 
 
 import com.example.backend.entity.EntityDefinition;
-import com.example.backend.ws.facad.EntityDefinitionWs;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
