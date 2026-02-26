@@ -1,7 +1,6 @@
 package com.example.backend.ws.facad;
 
-import com.example.backend.entity.EntityDefinition;
-import com.example.backend.services.facade.EntityDefinitionServices;
+import com.example.backend.services.meta.facade.EntityDefinitionServices;
 import com.example.backend.ws.convertir.EntityConvertir;
 import com.example.backend.ws.dto.EntityDefinitionDto;
 import org.springframework.transaction.annotation.Transactional;

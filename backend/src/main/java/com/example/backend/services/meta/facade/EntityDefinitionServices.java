@@ -1,4 +1,4 @@
-package com.example.backend.services.facade;
+package com.example.backend.services.meta.facade;
 
 
 import com.example.backend.entity.EntityDefinition;

@@ -1,17 +1,15 @@
-package com.example.backend.services.impl;
+package com.example.backend.services.meta.impl;
 import com.example.backend.dao.AttributeDefinitionRepository;
 import com.example.backend.entity.AttributeDefinition;
-import com.example.backend.services.facade.AttributeDefinitionService;
+import com.example.backend.services.meta.facade.AttributeDefinitionService;
 import com.example.backend.ws.convertir.AttributeConvertir;
 import com.example.backend.ws.dto.AttributeDefinitionDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 
 public class AttributeDefinitionServiceImpl implements AttributeDefinitionService {
-
 
     private final AttributeDefinitionRepository dao;
     private final AttributeConvertir convertir;

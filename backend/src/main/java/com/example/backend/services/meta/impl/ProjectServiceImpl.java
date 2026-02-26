@@ -1,10 +1,10 @@
-package com.example.backend.services.impl;
+package com.example.backend.services.meta.impl;
 
 import com.example.backend.dao.ProjectRepository;
 import com.example.backend.entity.Project;
 import com.example.backend.security.bean.User;
 import com.example.backend.security.services.utils.SecurityUtils;
-import com.example.backend.services.facade.ProjectService;
+import com.example.backend.services.meta.facade.ProjectService;
 
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,10 @@
-package com.example.backend.services.impl;
+package com.example.backend.services.meta.impl;
 
 import com.example.backend.dao.EntityDefinitionRepository;
 import com.example.backend.dao.ProjectRepository;
 import com.example.backend.entity.EntityDefinition;
 import com.example.backend.entity.Project;
-import com.example.backend.services.facade.EntityDefinitionServices;
+import com.example.backend.services.meta.facade.EntityDefinitionServices;
 import com.example.backend.ws.convertir.EntityConvertir;
 import com.example.backend.ws.dto.EntityDefinitionDto;
 import lombok.extern.slf4j.Slf4j;
